@@ -1,0 +1,25 @@
+[
+	{
+		"model": "lms.librarybranch",
+		"pk": 1,
+		"fields": {
+			"branch_name": "Mountain View Branch",
+			"address": "123 Skyline Dr",
+			"telephone": "555-1235",
+			"description": "The Mountain View branch contains the largest collection of Art History and Foreign Language Learning books in the region",
+			"open_date": "1998-06-01"
+		}
+	},
+
+	{
+		"model": "lms.librarybranch",
+		"pk": 2,
+		"fields": {
+			"branch_name": "Lake Shore Branch",
+			"address": "88 Lakeshore Dr",
+			"telephone": "555-1235",
+			"description": "The oldest library branch in Lakeview, the Lake Shore Branch was opened in 1975. Patrons of all ages enjoy the wide selection of literature available at Lake Shore Library. The coffee sop is open during hours of operation",
+			"open_date": "1975-05-13"
+		}
+	}
+]
