@@ -34,7 +34,7 @@
                   <td>{{ patron.last_name }}</td>
                   <td>{{ patron.first_name }}</td>
                   <td>{{ patron.librarycard.id }}</td>
-                  <td>${{ patron.librarycard.fees }}</td>
+                  <td>$ {{ patron.librarycard.fees }}</td>
                   <td>{{ patron.home_library_branch }}</td>
               </tr>
               {% endfor %}
