@@ -1,0 +1,145 @@
+[
+{
+    "model": "lms.patron",
+    "pk": 1,
+    "fields": {
+        "first_name": "Lindsey J.",
+        "last_name": "Knight",
+        "address": "2443 Farnum Road",
+        "date_of_birth": "1990-05-08",
+        "telephone": "212-312-1849",
+        "gender": "F",
+        "home_library_branch": 1
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 2,
+    "fields": {
+        "first_name": "Robert D.",
+        "last_name": "Goodson",
+        "address": "661 Orchard Street",
+        "date_of_birth": "1979-03-03",
+        "telephone": "952-855-8099",
+        "gender": "M",
+        "home_library_branch": 1
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 3,
+    "fields": {
+        "first_name": "Roger",
+        "last_name": "Heise",
+        "address": "14 Maud Street",
+        "date_of_birth": "1965-06-18",
+        "telephone": "302-653-7734",
+        "gender": "M",
+        "home_library_branch": 1
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 4,
+    "fields": {
+        "first_name": "Judy",
+        "last_name": "Jenkins",
+        "address": "3939 Blair Court",
+        "date_of_birth": "1985-11-16",
+        "telephone": "660-621-3412",
+        "gender": "F",
+        "home_library_branch": 1
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 5,
+    "fields": {
+        "first_name": "Deborah",
+        "last_name": "Hough",
+        "address": "4796 Harry Place",
+        "date_of_birth": "1983-11-02",
+        "telephone": "704-801-6510",
+        "gender": "F",
+        "home_library_branch": 1
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 6,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Real",
+        "address": "2475 Jody Road",
+        "date_of_birth": "1995-05-20",
+        "telephone": "610-569-8801",
+        "gender": "M",
+        "home_library_branch": 2
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 7,
+    "fields": {
+        "first_name": "Janet",
+        "last_name": "Crawford",
+        "address": "2816 Fowler Avenue",
+        "date_of_birth": "1988-02-15",
+        "telephone": "770-299-7438",
+        "gender": "F",
+        "home_library_branch": 2
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 8,
+    "fields": {
+        "first_name": "Ramiro",
+        "last_name": "Moor",
+        "address": "3505 Rodney Street",
+        "date_of_birth": "1994-09-30",
+        "telephone": "636-524-3742",
+        "gender": "M",
+        "home_library_branch": 2
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 9,
+    "fields": {
+        "first_name": "Robert",
+        "last_name": "Miller",
+        "address": "3604 Cottrill Lane",
+        "date_of_birth": "1997-01-23",
+        "telephone": "314-467-0139",
+        "gender": "M",
+        "home_library_branch": 2
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 10,
+    "fields": {
+        "first_name": "Tyrone",
+        "last_name": "Hardin",
+        "address": "123 Seltice Way",
+        "date_of_birth": "1985-06-24",
+        "telephone": "208-678-3618",
+        "gender": "M",
+        "home_library_branch": 2
+    }
+},
+{
+    "model": "lms.patron",
+    "pk": 11,
+    "fields": {
+        "first_name": "Maria",
+        "last_name": "Woodward",
+        "address": "4613 Broad Street",
+        "date_of_birth": "1990-04-12",
+        "telephone": "205-420-5094",
+        "gender": "F",
+        "home_library_branch": 2
+    }
+}
+]

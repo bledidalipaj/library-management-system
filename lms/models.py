@@ -27,7 +27,7 @@ class Patron(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     address = models.CharField(max_length=150)
-    date_of_birth = models.DateField(auto_now_add=True)
+    date_of_birth = models.DateField()
     telephone = models.CharField(max_length=30)
     gender = models.CharField(
         max_length=1, choices=GENDER_CHOICES, default=MALE)
