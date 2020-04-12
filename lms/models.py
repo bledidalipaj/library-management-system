@@ -9,7 +9,8 @@ class LibraryBranch(models.Model):
     open_date = models.DateTimeField()
 
     def __str__(self):
-        return f'Library Branch: {self.branch_name}'
+        # return f'Library Branch: {self.branch_name}'
+        return f'{self.branch_name}'
 
 
 class Checkout(models.Model):

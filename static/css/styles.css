@@ -13,3 +13,15 @@ h1 {
     color: #fff;
     padding: 10px;
 }
+
+
+/* Table styles */
+
+.thead-dark th {
+	background-color: #343a40 !important;
+}
+
+table a,
+table a:hover {
+	color: #343a40;
+}

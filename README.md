@@ -14,3 +14,7 @@ Export Patron model data to patron.json
 ```bash
 $ python manage.py dumpdata lms.patron --indent 4 --output patron.json
 ```
+
+#### Person information
+
+Persono information were generated using this website https://www.fakenamegenerator.com/gen-random-us-us.php
