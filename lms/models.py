@@ -99,4 +99,7 @@ class Book(LibraryAsset):
     authors = models.ManyToManyField(Author)
     dewey_index = models.CharField(max_length=15)
     cover_image = models.ImageField(
-        upload_to='media/covers/books', default='media/covers/nocover.jpg')
+        upload_to='covers/books', default='media/covers/nocover.jpg')
+
+    def __str__(self):
+        return self.title
