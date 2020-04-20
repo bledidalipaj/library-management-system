@@ -1,0 +1,26 @@
+[
+{
+    "model": "lms.status",
+    "pk": 1,
+    "fields": {
+        "name": "AV",
+        "description": "Item is available for check out."
+    }
+},
+{
+    "model": "lms.status",
+    "pk": 2,
+    "fields": {
+        "name": "CO",
+        "description": "Item is not available for check out."
+    }
+},
+{
+    "model": "lms.status",
+    "pk": 3,
+    "fields": {
+        "name": "LO",
+        "description": "Item is lost and therefore is not available for check out."
+    }
+}
+]
