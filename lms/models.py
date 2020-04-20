@@ -9,7 +9,6 @@ class LibraryBranch(models.Model):
     open_date = models.DateTimeField()
 
     def __str__(self):
-        # return f'Library Branch: {self.branch_name}'
         return f'{self.branch_name}'
 
 
@@ -47,3 +46,42 @@ class LibraryCard(models.Model):
 
     def __str__(self):
         return f'Library card {self.id}'
+
+
+class Status(models.Model):
+    STATUS_CHOICES = [
+        ('AV', 'Available'),
+        ('CO', 'Checked Out'),
+        ('LO', 'Lost')
+    ]
+    name = models.CharField(max_length=2, choices=STATUS_CHOICES)
+    description = models.TextField()
+
+
+class LibraryAsset(models.Model):
+    title = models.CharField(max_length=100)
+    publish_year = models.DateField()
+    status = models.ForeignKey(
+        Status, related_name='assets', on_delete=models.CASCADE)
+    cost = models.DecimalField(max_digits=5, decimal_places=2)
+    image = models.ImageField(upload_to='media')
+    number_of_copies = models.IntegerField()
+    location = models.ForeignKey(
+        LibraryBranch, related_name='assets', on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
+
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=25)
+    last_name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+class Book(LibraryAsset):
+    isbn = models.CharField(max_length=13)
+    authors = models.ManyToManyField(Author)
+    dewey_index = models.CharField(max_length=15)
