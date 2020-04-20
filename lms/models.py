@@ -11,6 +11,9 @@ class LibraryBranch(models.Model):
     def __str__(self):
         return f'{self.branch_name}'
 
+    class Meta:
+        verbose_name_plural = 'Library Branches'
+
 
 class Checkout(models.Model):
     pass
@@ -57,14 +60,24 @@ class Status(models.Model):
     name = models.CharField(max_length=2, choices=STATUS_CHOICES)
     description = models.TextField()
 
+    def __str__(self):
+        if self.name == 'AV':
+            return 'Available'
+        elif self.name == 'CO':
+            return 'Checked Out'
+        elif self.name == 'LO':
+            return 'Lost'
+
+    class Meta:
+        verbose_name_plural = 'Status'
+
 
 class LibraryAsset(models.Model):
     title = models.CharField(max_length=100)
-    publish_year = models.DateField()
+    publish_date = models.DateField()
     status = models.ForeignKey(
         Status, related_name='assets', on_delete=models.CASCADE)
     cost = models.DecimalField(max_digits=5, decimal_places=2)
-    image = models.ImageField(upload_to='media')
     number_of_copies = models.IntegerField()
     location = models.ForeignKey(
         LibraryBranch, related_name='assets', on_delete=models.CASCADE)
@@ -85,3 +98,5 @@ class Book(LibraryAsset):
     isbn = models.CharField(max_length=13)
     authors = models.ManyToManyField(Author)
     dewey_index = models.CharField(max_length=15)
+    cover_image = models.ImageField(
+        upload_to='media/covers/books', default='media/covers/nocover.jpg')
