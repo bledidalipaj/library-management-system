@@ -1,0 +1,178 @@
+[
+{
+    "model": "lms.author",
+    "pk": 1,
+    "fields": {
+        "first_name": "Antonio",
+        "last_name": "Mele"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 2,
+    "fields": {
+        "first_name": "Audrey",
+        "last_name": "Roy"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 3,
+    "fields": {
+        "first_name": "Daniel",
+        "last_name": "Greenfeld"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 4,
+    "fields": {
+        "first_name": "Eric",
+        "last_name": "Windmill"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 5,
+    "fields": {
+        "first_name": "Fu",
+        "last_name": "Cheng"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 6,
+    "fields": {
+        "first_name": "Bonnie",
+        "last_name": "Eisenman"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 7,
+    "fields": {
+        "first_name": "Eoin",
+        "last_name": "Brazil"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 8,
+    "fields": {
+        "first_name": "Kristina",
+        "last_name": "Chodorow"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 9,
+    "fields": {
+        "first_name": "Shannon",
+        "last_name": "Bradshaw"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 10,
+    "fields": {
+        "first_name": "Jay",
+        "last_name": "McGavren"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 11,
+    "fields": {
+        "first_name": "Shaun",
+        "last_name": "Thomas"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 12,
+    "fields": {
+        "first_name": "Baji",
+        "last_name": "Shaik"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 13,
+    "fields": {
+        "first_name": "Manpreet",
+        "last_name": "Kaur"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 14,
+    "fields": {
+        "first_name": "Antro",
+        "last_name": "Aravinth"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 15,
+    "fields": {
+        "first_name": "Srikanth",
+        "last_name": "Machiraju"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 16,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Wolohan"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 17,
+    "fields": {
+        "first_name": "Dane",
+        "last_name": "Hillard"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 18,
+    "fields": {
+        "first_name": "Sunil",
+        "last_name": "Kapil"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 19,
+    "fields": {
+        "first_name": "Mark",
+        "last_name": "Thomas"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 20,
+    "fields": {
+        "first_name": "Alex",
+        "last_name": "Libby"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 21,
+    "fields": {
+        "first_name": "Yves",
+        "last_name": "Hilpisch"
+    }
+},
+{
+    "model": "lms.author",
+    "pk": 22,
+    "fields": {
+        "first_name": "Sanjib",
+        "last_name": "Sinha"
+    }
+}
+]

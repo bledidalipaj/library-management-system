@@ -93,6 +93,9 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    class Meta:
+        ordering = ['first_name']
+
 
 class Book(LibraryAsset):
     isbn = models.CharField(max_length=13)
@@ -103,3 +106,6 @@ class Book(LibraryAsset):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['title']

@@ -1,0 +1,313 @@
+[
+{
+    "model": "lms.book",
+    "pk": 1,
+    "fields": {
+        "title": "Django by Example",
+        "publish_date": "2018-10-04",
+        "status": 1,
+        "cost": "25.00",
+        "number_of_copies": 10,
+        "location": 2,
+        "isbn": "1784391913",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/django_by_example_cover.jpeg",
+        "authors": [
+            1
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 2,
+    "fields": {
+        "title": "Two Scoops of Django: Best Practices For Django 1.5",
+        "publish_date": "2013-04-06",
+        "status": 1,
+        "cost": "23.00",
+        "number_of_copies": 5,
+        "location": 2,
+        "isbn": "1481879707",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/two_scoops_of_django.jpg",
+        "authors": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 3,
+    "fields": {
+        "title": "Flutter in Action",
+        "publish_date": "2019-02-13",
+        "status": 1,
+        "cost": "20.00",
+        "number_of_copies": 3,
+        "location": 2,
+        "isbn": "1617296147",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Flutter-in-Action.jpg",
+        "authors": [
+            4
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 4,
+    "fields": {
+        "title": "Flutter Recipes",
+        "publish_date": "2019-07-10",
+        "status": 1,
+        "cost": "15.00",
+        "number_of_copies": 3,
+        "location": 2,
+        "isbn": "148424981X",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Flutter-Recipes.jpg",
+        "authors": [
+            5
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 5,
+    "fields": {
+        "title": "Learning React Native",
+        "publish_date": "2015-04-05",
+        "status": 1,
+        "cost": "10.00",
+        "number_of_copies": 1,
+        "location": 2,
+        "isbn": "1491929006",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/learning_react_native.jpeg",
+        "authors": [
+            6
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 6,
+    "fields": {
+        "title": "MongoDB: The Definitive Guide, 3rd Edition",
+        "publish_date": "2019-04-17",
+        "status": 1,
+        "cost": "35.00",
+        "number_of_copies": 1,
+        "location": 1,
+        "isbn": "1491954469",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/MongoDB-The-Definitive-Guide-3rd-Edition.jpg",
+        "authors": [
+            7,
+            8,
+            9
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 7,
+    "fields": {
+        "title": "Head First Go",
+        "publish_date": "2019-04-06",
+        "status": 1,
+        "cost": "17.20",
+        "number_of_copies": 1,
+        "location": 1,
+        "isbn": "1491969555",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Head-First-Go1-400x461.png",
+        "authors": [
+            10
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 8,
+    "fields": {
+        "title": "PostgreSQL High Availability Cookbook, 2nd Edition",
+        "publish_date": "2017-04-30",
+        "status": 1,
+        "cost": "23.00",
+        "number_of_copies": 2,
+        "location": 1,
+        "isbn": "178712553X",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/PostgreSQL-High-Availability-Cookbook-Second-Edition-400x493.jpg",
+        "authors": [
+            11
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 9,
+    "fields": {
+        "title": "PostgreSQL Development Essentials",
+        "publish_date": "2016-04-12",
+        "status": 1,
+        "cost": "12.00",
+        "number_of_copies": 1,
+        "location": 2,
+        "isbn": "1783989009",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/PostgreSQL-Development-Essentials-400x493.jpg",
+        "authors": [
+            12,
+            13
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 10,
+    "fields": {
+        "title": "Beginning Functional JavaScript, 2nd Edition",
+        "publish_date": "2018-04-12",
+        "status": 1,
+        "cost": "16.30",
+        "number_of_copies": 2,
+        "location": 1,
+        "isbn": "1484240863",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Beginning-Functional-JavaScript-2nd-Edition.jpg",
+        "authors": [
+            14,
+            15
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 11,
+    "fields": {
+        "title": "Mastering Large Datasets with Python",
+        "publish_date": "2020-02-06",
+        "status": 1,
+        "cost": "27.00",
+        "number_of_copies": 3,
+        "location": 1,
+        "isbn": "1617296236",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Mastering-Large-Datasets-with-Python.jpg",
+        "authors": [
+            16
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 12,
+    "fields": {
+        "title": "Practices of the Python Pro",
+        "publish_date": "2020-01-11",
+        "status": 1,
+        "cost": "19.00",
+        "number_of_copies": 1,
+        "location": 1,
+        "isbn": "1617296082",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Practices-of-the-Python-Pro.jpg",
+        "authors": [
+            17
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 13,
+    "fields": {
+        "title": "Clean Python",
+        "publish_date": "2019-04-20",
+        "status": 1,
+        "cost": "21.30",
+        "number_of_copies": 1,
+        "location": 1,
+        "isbn": "1",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Clean-Python.jpg",
+        "authors": [
+            18
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 14,
+    "fields": {
+        "title": "React in Action",
+        "publish_date": "2018-04-02",
+        "status": 1,
+        "cost": "14.00",
+        "number_of_copies": 1,
+        "location": 1,
+        "isbn": "1617293857",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/React-in-Action.jpg",
+        "authors": [
+            19
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 15,
+    "fields": {
+        "title": "Introducing the HTML5 Web Speech API",
+        "publish_date": "2020-01-14",
+        "status": 1,
+        "cost": "23.00",
+        "number_of_copies": 1,
+        "location": 1,
+        "isbn": "1484257340",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Introducing-the-HTML5-Web-Speech-API.jpg",
+        "authors": [
+            20
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 16,
+    "fields": {
+        "title": "Python for Finance",
+        "publish_date": "2014-04-01",
+        "status": 1,
+        "cost": "12.00",
+        "number_of_copies": 1,
+        "location": 1,
+        "isbn": "9781491945",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/python_for_finance.jpg",
+        "authors": [
+            21
+        ]
+    }
+},
+{
+    "model": "lms.book",
+    "pk": 17,
+    "fields": {
+        "title": "Beginning Laravel",
+        "publish_date": "2016-04-14",
+        "status": 1,
+        "cost": "12.00",
+        "number_of_copies": 1,
+        "location": 1,
+        "isbn": "1484225376",
+        "dewey_index": "883.123 ABC",
+        "cover_image": "covers/books/Beginning-Laravel-330x500.jpg",
+        "authors": [
+            22
+        ]
+    }
+}
+]
