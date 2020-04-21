@@ -14,6 +14,7 @@ class ListPatronsView(ListView):
     context_object_name = 'patrons'
     model = Patron
     template_name = 'patrons.html'
+    paginate_by = 25
 
     def get_context_data(self, **kwargs):
         # call the base implementation fist to get a context
