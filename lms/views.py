@@ -27,6 +27,7 @@ class ListCatalogView(ListView):
     context_object_name = 'books'
     model = Book
     template_name = 'catalog.html'
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         # call the base implementation fist to get a context
