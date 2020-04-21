@@ -7,5 +7,5 @@ $(window).on('load', function() {
 	setTimeout(function() {
 		$(".loader").fadeOut(); 
 		$("#preloader").delay(400).fadeOut("slow");
-	}, 4000);
+	}, 1000);
 });
