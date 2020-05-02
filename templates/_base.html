@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -73,6 +74,10 @@
     </nav>
 
     {% block content %} {% endblock content %}
+
+    <footer class="footer text-center container text-muted border-top py-2 mt-5 small">
+      <span>&copy;<script type="text/javascript">document.write(new Date().getFullYear());</script> Bledi Dalipaj</span>
+    </footer>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
