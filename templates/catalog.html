@@ -5,7 +5,7 @@
     <h1>Library Catalog</h1>
 
     <div class="table-responsive">
-      <table class="table table-hover table-sm align-middle">
+      <table class="table table-hover table-sm align-middle" id="catalog-datatable">
         <!-- Screen Readers -->
         <caption class="sr-only">
           List of library items
@@ -29,8 +29,8 @@
                 <img
                   src="{% if book.cover_image %}{{ book.cover_image.url }}{% else %}{% static 'images/nocover.jpg' %}{% endif %}"
                   alt=""
-                  width="200"
-                  height="262"
+                  width="150"
+                  height="212"
                 />
               </td>
               <td class="align-middle text-center">{{ book.title }}</td>
@@ -48,7 +48,24 @@
     <!-- /.table-responsive -->
 
     <!-- Pagination -->
-    {% include "_pagination.html" %}
+    {% comment %} {% include "_pagination.html" %} {% endcomment %}
   </div>
   <!-- /.container -->
 {% endblock content %}
+
+{% block scripts %}
+  $("#catalog-datatable").DataTable(
+    {
+      "columns": [
+        // disable image column sorting
+        {"name": "image", "orderable": false},
+        {"name": "title", "orderable": true},
+        {"name": "author_director", "orderable": true},
+        {"name": "dewey_call_number", "orderable": true} 
+      ],
+      // order by title
+      "order": [[1, "asc"]]
+    },
+  );
+{% endblock scripts %}
+  

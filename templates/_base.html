@@ -96,5 +96,12 @@
 
     <!-- Custom JS -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript">
+      $("document").ready(function() {
+        {% block scripts %}
+        {% endblock scripts %}
+      });
+    </script>
+      
   </body>
 </html>

@@ -3,5 +3,8 @@
         "**/templates/*.html": "django-html",
         "**/templates/*": "django-txt"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
 }
