@@ -1,47 +1,46 @@
-{% extends "_base.html" %}
-{% load static %}
-
+{% extends "_base.html" %} 
+{% load static %} 
 {% block content %}
-    <div class="container">
-        <h1>Patrons Index</h1>
+  <div class="container">
+    <h1>Patrons Index</h1>
 
+    <div class="table-responsive">
+      <table class="table table-hover table-sm">
+        <!-- Screen Readers -->
+        <caption class="sr-only">
+          List of library patrons
+        </caption>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Profile Link</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Library Card Id</th>
+            <th scope="col">Overdue Fees</th>
+            <th scope="col">Home Library</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for patron in patrons %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>
+                <a href="#">
+                  <i class="fas fa-user"></i>
+                </a>
+              </td>
+              <td>{{ patron.last_name }}</td>
+              <td>{{ patron.first_name }}</td>
+              <td>{{ patron.librarycard.id }}</td>
+              <td>$ {{ patron.librarycard.fees }}</td>
+              <td>{{ patron.home_library_branch }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-        <div class="table-responsive">
-          <table class="table table-hover table-sm">
-            <!-- Screen Readers -->
-            <caption class="sr-only">List of library patrons</caption>
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Profile Link</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Library Card Id</th>
-                <th scope="col">Overdue Fees</th>
-                <th scope="col">Home Library</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              {% for patron in patrons %}
-                <tr>
-                  <th scope="row">{{ forloop.counter }}</th>
-                  <td>
-                    <a href="#">
-                      <i class="fas fa-user"></i>
-                    </a>
-                  </td>
-                  <td>{{ patron.last_name }}</td>
-                  <td>{{ patron.first_name }}</td>
-                  <td>{{ patron.librarycard.id }}</td>
-                  <td>$ {{ patron.librarycard.fees }}</td>
-                  <td>{{ patron.home_library_branch }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-
-        {% include "_pagination.html" %}
-      </div>
+    {% include "_pagination.html" %}
+  </div>
 {% endblock content %}

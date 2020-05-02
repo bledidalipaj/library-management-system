@@ -1,44 +1,54 @@
-{% extends "_base.html" %}
-{% load static %}
-
+{% extends "_base.html" %} 
+{% load static %} 
 {% block content %}
-	<div class="container">
-        <h1>Library Catalog</h1>
+  <div class="container">
+    <h1>Library Catalog</h1>
 
+    <div class="table-responsive">
+      <table class="table table-hover table-sm align-middle">
+        <!-- Screen Readers -->
+        <caption class="sr-only">
+          List of library items
+        </caption>
+        <thead class="thead-dark">
+          <tr class="align-middle">
+            <th scope="col" class="align-middle">Image</th>
+            <th scope="col" class="align-middle">Title</th>
+            <th scope="col" class="align-middle text-center">
+              Author / Director
+            </th>
+            <th scope="col" class="align-middle text-center">
+              Dewey Call Number
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+            <tr>
+              <td class="align-middle">
+                <img
+                  src="{% if book.cover_image %}{{ book.cover_image.url }}{% else %}{% static 'images/nocover.jpg' %}{% endif %}"
+                  alt=""
+                  width="200"
+                  height="262"
+                />
+              </td>
+              <td class="align-middle text-center">{{ book.title }}</td>
+              <td class="align-middle text-center">
+                {% for author in book.authors.all %}
+                  <span>{{ author.first_name }} {{ author.last_name }}</span>,
+                {% endfor %}
+              </td>
+              <td class="align-middle text-center">{{ book.dewey_index }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- /.table-responsive -->
 
-        <div class="table-responsive">
-          <table class="table table-hover table-sm align-middle">
-            <!-- Screen Readers -->
-            <caption class="sr-only">List of library items</caption>
-            <thead class="thead-dark">
-              <tr class="align-middle">
-                <th scope="col" class="align-middle">Image</th>
-                <th scope="col" class="align-middle">Title</th>
-                <th scope="col" class="align-middle text-center">Author / Director</th>
-                <th scope="col" class="align-middle text-center">Dewey Call Number</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              {% for book in books %}
-                <tr>
-                  <td class="align-middle">
-                  	<img src="{% if book.cover_image %}{{ book.cover_image.url }}{% else %}{% static 'images/nocover.jpg' %}{% endif %}" alt="" width="200" height="262">
-                  </td>
-                  <td class="align-middle text-center">{{ book.title }}</td>
-                  <td class="align-middle text-center">
-                  	{% for author in book.authors.all %}
-                  		<span>{{ author.first_name }} {{ author.last_name }}</span>,
-                  	{% endfor %}
-                  </td>
-                  <td class="align-middle text-center">{{ book.dewey_index }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div> <!-- /.table-responsive -->
-		
-		<!-- Pagination -->
-		{% include "_pagination.html" %}
-      </div> <!-- /.container -->
-{% endblock content %}	
+    <!-- Pagination -->
+    {% include "_pagination.html" %}
+  </div>
+  <!-- /.container -->
+{% endblock content %}
