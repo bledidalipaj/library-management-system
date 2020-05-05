@@ -33,7 +33,7 @@
                   height="212"
                 />
               </td>
-              <td class="align-middle text-center">{{ book.title }}</td>
+              <td class="align-middle text-center"><a href="{% url 'item-detail' pk=book.pk %}">{{ book.title }}</a></td>
               <td class="align-middle text-center">
                 {% for author in book.authors.all %}
                   <span>{{ author.first_name }} {{ author.last_name }}</span>,

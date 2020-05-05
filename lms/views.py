@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView
+from django.views.generic import DetailView, ListView
 
 
 from .models import Book, Patron
@@ -8,6 +8,12 @@ from .models import Book, Patron
 def home(request):
     context = {'page': 'home'}
     return render(request, 'home.html', context)
+
+
+class LibraryItemDetailView(DetailView):
+    context_object_name = 'item'
+    model = Book
+    template_name = 'item_detail.html'
 
 
 class ListPatronsView(ListView):
