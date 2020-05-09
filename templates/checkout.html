@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <h1 class="mb-5">Checkout Library Item</h1>
+
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <h3 class="item-title">{{ item.title }}</h3>
+        <img
+          src="{% if item.cover_image %}{{ item.cover_image.url }}{% else %}{% static 'images/nocover.jpg' %}{% endif %}"
+          alt=""
+          width="250"
+          height="312"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <form action="" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+
+          <input type="hidden" name="library_asset" value="{{ library_asset_id }}">
+          <input type="submit" value="Checkout" class="btn btn-success">
+        </form>
+      </div>
+
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+{% endblock content %}
+    

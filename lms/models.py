@@ -16,7 +16,15 @@ class LibraryBranch(models.Model):
 
 
 class Checkout(models.Model):
-    pass
+    library_asset = models.ForeignKey(
+        'Book', related_name='checkouts', on_delete=models.PROTECT, null=True)
+    library_card = models.ForeignKey(
+        'LibraryCard', related_name='checkouts', on_delete=models.PROTECT, null=True)
+    since = models.DateTimeField(auto_now_add=True, null=True)
+    until = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'Checkout {self.pk}'
 
 
 class Patron(models.Model):

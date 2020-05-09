@@ -73,6 +73,25 @@
       </div>
     </nav>
 
+    <!-- Messages -->
+    <div class="container">
+      {% if messages %}
+        <ul class="messages list-unstyled">
+            {% for message in messages %}
+              <li {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert"{% endif %}>
+                  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                  <strong>{{ message }}</strong>
+
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </li>
+            {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+
     {% block content %} {% endblock content %}
 
     <footer class="footer text-center container text-muted border-top py-2 mt-5 small mt-auto">

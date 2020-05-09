@@ -1,13 +1,38 @@
-from django.shortcuts import render
-from django.views.generic import DetailView, ListView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView
 
 
-from .models import Book, Patron
+from .models import Book, Checkout, Patron
 
 
 def home(request):
     context = {'page': 'home'}
     return render(request, 'home.html', context)
+
+
+class CheckoutItemView(SuccessMessageMixin, CreateView):
+    model = Checkout
+    fields = ['library_card']
+    template_name = 'checkout.html'
+    success_message = 'Item checked successfuly.'
+
+    def form_valid(self, form):
+        library_asset = get_object_or_404(Book, pk=self.kwargs['pk'])
+        form.instance.library_asset = library_asset
+        return super(CheckoutItemView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(CheckoutItemView, self).get_context_data(**kwargs)
+        context['library_asset_id'] = self.kwargs['pk']
+        context['item'] = get_object_or_404(Book, pk=self.kwargs['pk'])
+        return context
+
+    def get_success_url(self):
+        print(self.request.POST)
+
+        return reverse_lazy('item-detail', kwargs={'pk': self.kwargs['pk']})
 
 
 class LibraryItemDetailView(DetailView):
