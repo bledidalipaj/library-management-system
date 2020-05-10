@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
 
 
-from .models import Book, Checkout, Patron
+from .models import Book, Checkout, CheckoutHistory, Patron
 
 
 def home(request):
@@ -39,6 +39,14 @@ class LibraryItemDetailView(DetailView):
     context_object_name = 'item'
     model = Book
     template_name = 'item_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LibraryItemDetailView, self).get_context_data(**kwargs)
+        library_asset = get_object_or_404(Book, pk=self.kwargs['pk'])
+        context['checkout_history'] = CheckoutHistory.objects.filter(
+            library_asset=library_asset)[:5]
+
+        return context
 
 
 class ListPatronsView(ListView):

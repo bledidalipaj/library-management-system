@@ -27,6 +27,20 @@ class Checkout(models.Model):
         return f'Checkout {self.pk}'
 
 
+class CheckoutHistory(models.Model):
+    library_asset = models.ForeignKey('Book', on_delete=models.PROTECT)
+    library_card = models.ForeignKey('LibraryCard', on_delete=models.PROTECT)
+    checked_out = models.DateTimeField(auto_now_add=True)
+    checked_in = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f'Checkout History {self.pk}'
+
+    class Meta:
+        ordering = ['-checked_out']
+        verbose_name_plural = 'Checkout History'
+
+
 class Patron(models.Model):
     MALE = 'M'
     FEMALE = 'F'

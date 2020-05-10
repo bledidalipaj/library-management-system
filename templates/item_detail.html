@@ -75,11 +75,22 @@
                 {% comment %} {% for book in books %}
                     
                 {% endfor %} {% endcomment %}
-                <tr>
-                  <td>06/26/2017</td>
-                  <td>28/06/2018</td>
-                  <td>4</td>
-                </tr>
+                
+                {% for entry in checkout_history %}
+                  <tr>
+                    <td>{{ entry.checked_out|date:"M d, Y"}}</td>
+                    <td>
+                      
+                      {% if entry.checked_in %}
+                        {{ entry.checked_in|date:"M d, Y" }}
+                      {% else %}
+                        -
+                      {% endif %}
+                        
+                    </td>
+                    <td>{{ entry.library_card.pk }}</td>
+                  </tr>
+                {% endfor %}
               </tbody>
           </table>
         </div>
