@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
 
 
-from .models import Book, Checkout, CheckoutHistory, Patron
+from .models import Book, Checkout, CheckoutHistory, Hold, Patron
 
 
 def home(request):
@@ -30,8 +30,6 @@ class CheckoutItemView(SuccessMessageMixin, CreateView):
         return context
 
     def get_success_url(self):
-        print(self.request.POST)
-
         return reverse_lazy('item-detail', kwargs={'pk': self.kwargs['pk']})
 
 
@@ -45,6 +43,7 @@ class LibraryItemDetailView(DetailView):
         library_asset = get_object_or_404(Book, pk=self.kwargs['pk'])
         context['checkout_history'] = CheckoutHistory.objects.filter(
             library_asset=library_asset)[:5]
+        context['holds'] = Hold.objects.filter(library_asset=library_asset)
 
         return context
 
@@ -75,3 +74,24 @@ class ListCatalogView(ListView):
         # add page variable
         context['page'] = 'catalog'
         return context
+
+
+class PlaceHoldItemView(SuccessMessageMixin, CreateView):
+    model = Hold
+    fields = ['library_card']
+    template_name = 'place_hold.html'
+    success_message = 'Hold was successfuly placed.'
+
+    def form_valid(self, form):
+        library_asset = get_object_or_404(Book, pk=self.kwargs['pk'])
+        form.instance.library_asset = library_asset
+        return super(PlaceHoldItemView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(PlaceHoldItemView, self).get_context_data(**kwargs)
+        context['library_asset_id'] = self.kwargs['pk']
+        context['item'] = get_object_or_404(Book, pk=self.kwargs['pk'])
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('item-detail', kwargs={'pk': self.kwargs['pk']})

@@ -21,7 +21,7 @@
             Chino Dalipaj
           </div>
           <div class="item-status font-weight-bold">
-              Available
+              {{ item.status }}
           </div>
           <div class="item-type">
               Book
@@ -32,7 +32,18 @@
           </div>
 
           <div class="actions mt-auto">
-              <a href="{% url 'checkout' pk=item.pk %}" class="btn btn-primary">Check Out</a>
+              
+              {% if item.status.name == "AV" %}
+                <!-- Item is Available for Check Out-->
+                <a href="{% url 'checkout' pk=item.pk %}" class="btn btn-primary">Check Out</a>
+              {% elif item.status.name == "CO" %}
+                <!-- Item is Checked Out -->
+                <a href="#" class="btn btn-dark">Check In</a>
+                <a href="{% url 'hold' pk=item.pk %}" class="btn btn-outline-dark">Place a Hold</a>
+              {% endif %}
+              
+                
+              
               <a href="#" class="btn btn-danger">Mark Item Lost</a>
           </div>
       </div>
@@ -72,10 +83,6 @@
                   </tr>
               </thead>
               <tbody>
-                {% comment %} {% for book in books %}
-                    
-                {% endfor %} {% endcomment %}
-                
                 {% for entry in checkout_history %}
                   <tr>
                     <td>{{ entry.checked_out|date:"M d, Y"}}</td>
@@ -116,10 +123,13 @@
                 {% comment %} {% for book in books %}
                     
                 {% endfor %} {% endcomment %}
-                <tr>
-                  <td>06/26/2017</td>
-                  <td>28/06/2018</td>
-                </tr>
+                
+                {% for entry in holds %}
+                  <tr>
+                    <td>{{ entry.hold_placed|date:"M d, Y"}}</td>
+                    <td>{{ entry.library_card.patron }}</td>
+                  </tr>
+                {% endfor %}
               </tbody>
           </table>
         </div>

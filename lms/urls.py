@@ -6,7 +6,8 @@ from .views import (
     CheckoutItemView,
     LibraryItemDetailView,
     ListCatalogView,
-    ListPatronsView
+    ListPatronsView,
+    PlaceHoldItemView
 )
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path('catalog/', ListCatalogView.as_view(), name='catalog'),
     path('catalog/<int:pk>', LibraryItemDetailView.as_view(), name='item-detail'),
     path('checkout/<int:pk>', CheckoutItemView.as_view(), name='checkout'),
+    path('hold/<int:pk>', PlaceHoldItemView.as_view(), name='hold'),
 ]

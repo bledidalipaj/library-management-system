@@ -41,6 +41,15 @@ class CheckoutHistory(models.Model):
         verbose_name_plural = 'Checkout History'
 
 
+class Hold(models.Model):
+    library_asset = models.ForeignKey('Book', on_delete=models.PROTECT)
+    library_card = models.ForeignKey('LibraryCard', on_delete=models.PROTECT)
+    hold_placed = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Hold {self.pk}'
+
+
 class Patron(models.Model):
     MALE = 'M'
     FEMALE = 'F'
