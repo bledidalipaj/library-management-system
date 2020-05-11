@@ -7,13 +7,27 @@
     <h1 class="mb-5">View Library Item</h1>
 
     <div class="row mb-5">
-      <div class="col-2">
+      <div class="col-2 position-relative">
         <img
           src="{% if item.cover_image %}{{ item.cover_image.url }}{% else %}{% static 'images/nocover.jpg' %}{% endif %}"
           alt=""
           width="150"
           height="212"
         />
+        {% if item.is_available_to_borrow %}
+          <div class="available-copies-badge bg-success">
+            <span title="Available copies">
+              {{ item.number_of_available_copies_to_borrow }}
+            </span>
+            <span class="sr-only">Available copies</span>
+          </div>
+        {% else %}
+            <div class="available-copies-badge bg-danger">
+            <span title="Available copies">0</span>
+            <span class="sr-only">Available copies</span>
+          </div>
+        {% endif %}
+        
       </div>
       <div class="col-5 offset-1 d-flex flex-column">
           <h3 class="item-title">{{ item.title }}</h3>
@@ -25,6 +39,10 @@
           </div>
           <div class="item-type">
               Book
+          </div>
+
+          <div class="item-copies small">
+              Total number of copies: {{ item.number_of_copies }}
           </div>
           
           <div class="item-location small">

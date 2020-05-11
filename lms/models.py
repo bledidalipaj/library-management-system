@@ -116,6 +116,14 @@ class LibraryAsset(models.Model):
     class Meta:
         abstract = True
 
+    @property
+    def is_available_to_borrow(self):
+        return self.number_of_copies > Checkout.objects.filter(library_asset=self.pk).count()
+
+    @property
+    def number_of_available_copies_to_borrow(self):
+        return self.number_of_copies - Checkout.objects.filter(library_asset=self.pk).count()
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=25)

@@ -28,3 +28,21 @@ table a,
 table a:hover {
   color: #343a40;
 }
+
+/* 
+ Detail Page
+*/
+
+.available-copies-badge {
+  position: absolute;
+  top: -28px;
+  right: -19px;
+  font-size: 1.3rem;
+  color: #fff;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
