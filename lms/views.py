@@ -39,7 +39,7 @@ class CheckoutItemView(SuccessMessageMixin, CreateView):
             super().post(request, *args, **kwargs)
         except ValidationError as e:
             messages.add_message(request, messages.WARNING, e.message)
-            return render(request, template_name=self.template_name, context=self.get_context_data())
+        return render(request, template_name=self.template_name, context=self.get_context_data())
 
 
 class LibraryItemDetailView(DetailView):
