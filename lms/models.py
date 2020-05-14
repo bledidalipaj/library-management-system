@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -25,6 +26,13 @@ class Checkout(models.Model):
 
     def __str__(self):
         return f'Checkout {self.pk}'
+
+    def save(self, *args, **kwargs):
+        if not self.library_asset.is_available_to_borrow:
+            raise ValidationError('Asset is not available for borrow.')
+        elif not self.library_card.can_borrow:
+            raise ValidationError('Patron can not borrow any more assets')
+        super().save(*args, **kwargs)
 
 
 class CheckoutHistory(models.Model):
@@ -65,7 +73,7 @@ class Patron(models.Model):
     telephone = models.CharField(max_length=30)
     gender = models.CharField(
         max_length=1, choices=GENDER_CHOICES, default=MALE)
-    # libary_card = models.OneToOneField(LibraryCard, on_delete=models.CASCADE)
+    # library_card = models.OneToOneField(LibraryCard, on_delete=models.CASCADE)
     home_library_branch = models.ForeignKey(
         LibraryBranch, on_delete=models.PROTECT)
 
@@ -74,12 +82,18 @@ class Patron(models.Model):
 
 
 class LibraryCard(models.Model):
+    MAX_NUMBER_OF_SIMULTANEOUSLY_BORROWED_ASSETS = 3
+
     fees = models.FloatField(default=0.00)
     created = models.DateTimeField(auto_now_add=True)
     patron = models.OneToOneField(Patron, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'Library card {self.id}'
+
+    @property
+    def can_borrow(self):
+        return Checkout.objects.filter(library_card=self.pk).count() < self.MAX_NUMBER_OF_SIMULTANEOUSLY_BORROWED_ASSETS
 
 
 class Status(models.Model):

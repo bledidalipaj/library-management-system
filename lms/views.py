@@ -1,4 +1,6 @@
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
@@ -31,6 +33,13 @@ class CheckoutItemView(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('item-detail', kwargs={'pk': self.kwargs['pk']})
+
+    def post(self, request, *args, **kwargs):
+        try:
+            super().post(request, *args, **kwargs)
+        except ValidationError as e:
+            messages.add_message(request, messages.WARNING, e.message)
+            return render(request, template_name=self.template_name, context=self.get_context_data())
 
 
 class LibraryItemDetailView(DetailView):
