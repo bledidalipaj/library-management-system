@@ -1,6 +1,10 @@
+import json
+
+
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ValidationError
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
@@ -12,6 +16,29 @@ from .models import Book, Checkout, CheckoutHistory, Hold, Patron
 def home(request):
     context = {'page': 'home'}
     return render(request, 'home.html', context)
+
+
+def checkin_item(request):
+    if request.is_ajax():
+        checkout_ids = map(int, request.GET.get('checkout_ids').split(','))
+
+        for pk in checkout_ids:
+            checkout = get_object_or_404(Checkout, pk=pk)
+            checkout.delete()
+
+        data = {
+            'status': 'Ok'
+        }
+        return JsonResponse(data)
+
+
+def get_item_checkouts(request, pk):
+    library_asset = get_object_or_404(Book, pk=pk)
+    context = {
+        'checkouts': Checkout.objects.filter(library_asset=library_asset).order_by('library_card')
+    }
+
+    return render(request, '_modal_content.html', context)
 
 
 class CheckoutItemView(SuccessMessageMixin, CreateView):

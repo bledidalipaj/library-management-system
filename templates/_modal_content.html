@@ -1,0 +1,49 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Check In Item</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="table-responsive">
+          <table class="table table-hover table-sm align-middle">
+              <!-- Screen Readers -->
+              <caption class="sr-only">
+                Displays active checkouts for the item
+              </caption>
+              <thead>
+                  <tr class="align-middle">
+                    <th scope="col" class="align-middle">
+                      Card Id
+                    </th>
+                    <th scope="col" class="align-middle">
+                      Patron
+                    </th>
+                    <th scope="col" class="align-middle">Date Loaned</th>
+                    <th scope="col" class="align-middle">Return</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for entry in checkouts %}
+                  <tr>
+                    <td>{{ entry.library_card.pk }}</td>
+                    <td>{{ entry.library_card.patron }}</td>
+                    <td>{{ entry.since|date:"M d, Y"}}</td>
+                    <td class="text-center">
+                        <input type="checkbox" value="{{ entry.pk }}" class="return-item-checkbox">
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+  </div>
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" id="checkin-btn" data-url="{% url 'checkin' %}">Save</button>
+  </div>
+</div>
