@@ -34,7 +34,7 @@
     </title>
   </head>
   <body class="d-flex flex-column">
-    {% include "_preloader.html" %}
+    {% include "partials/_preloader.html" %}
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
       <a class="navbar-brand" href="{% url 'home' %}">Lakeview Library ILS</a>
       <button
@@ -93,7 +93,7 @@
       <span>&copy;<script type="text/javascript">document.write(new Date().getFullYear());</script> Bledi Dalipaj</span>
     </footer>
 
-    {% include '_modal.html' %}
+    {% include 'partials/_modal.html' %}
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script

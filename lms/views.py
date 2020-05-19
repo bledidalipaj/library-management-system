@@ -38,7 +38,7 @@ def get_item_checkouts(request, pk):
         'checkouts': Checkout.objects.filter(library_asset=library_asset).order_by('library_card')
     }
 
-    return render(request, '_modal_content.html', context)
+    return render(request, 'partials/_modal_content.html', context)
 
 
 class CheckoutItemView(SuccessMessageMixin, CreateView):
