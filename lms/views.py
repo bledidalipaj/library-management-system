@@ -32,10 +32,22 @@ def checkin_item(request):
         return JsonResponse(data)
 
 
+def get_checkout_history(request, pk):
+    library_asset = get_object_or_404(Book, pk=pk)
+    checkout_history = CheckoutHistory.objects.filter(library_asset=library_asset)
+
+    context = {
+        'checkout_history': checkout_history,
+    }
+
+    return render(request, 'partials/_checkout_history.html', context)
+
+
 def get_item_checkouts(request, pk):
     library_asset = get_object_or_404(Book, pk=pk)
     context = {
-        'checkouts': Checkout.objects.filter(library_asset=library_asset).order_by('library_card')
+        'checkouts': Checkout.objects.filter(library_asset=library_asset).order_by('library_card'),
+        'pk': pk
     }
 
     return render(request, 'partials/_modal_content.html', context)

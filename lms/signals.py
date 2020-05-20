@@ -1,5 +1,7 @@
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 from .enums import StatusEnum
 from .models import Checkout, CheckoutHistory, LibraryCard, Patron, Status
@@ -35,6 +37,12 @@ def update_library_asset_status_post_save(sender, instance, created, **kwargs):
 @receiver(post_delete, sender=Checkout)
 def update_library_asset_status_post_delete(sender, instance, **kwargs):
     library_asset = instance.library_asset
+    library_card = instance.library_card
+
+    checkout_history_entry = get_object_or_404(
+        CheckoutHistory, library_asset=library_asset, library_card=library_card)
+    checkout_history_entry.checked_in = timezone.now()
+    checkout_history_entry.save()
 
     if library_asset.is_available_to_borrow:
         updated_status = Status.objects.get(name=StatusEnum.AVAILABLE.value)

@@ -5,6 +5,7 @@ from .views import (
     home,
     checkin_item,
     CheckoutItemView,
+    get_checkout_history,
     get_item_checkouts,
     LibraryItemDetailView,
     ListCatalogView,
@@ -20,5 +21,7 @@ urlpatterns = [
     path('checkin/<int:pk>', get_item_checkouts, name='item-checkouts'),
     path('checkin/', checkin_item, name='checkin'),
     path('checkout/<int:pk>', CheckoutItemView.as_view(), name='checkout'),
+    path('checkout-history/<int:pk>',
+         get_checkout_history, name='checkout-history'),
     path('hold/<int:pk>', PlaceHoldItemView.as_view(), name='hold'),
 ]

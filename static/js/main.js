@@ -1,5 +1,17 @@
 "use strict";
 
+const SPINNER = `
+<tr>
+  <td colspan="3">
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </td>
+</tr>
+`;
+
 $(window).on("load", function () {
   /*------------------------------------
 		Preloder
@@ -43,6 +55,7 @@ $(window).on("load", function () {
 function checkin() {
   $("#checkin-btn").click(function (e) {
     const URL = $("#checkin-btn").data("url");
+    const PK = $("#checkin-btn").data("pk");
     let checkout_ids = [];
 
     $.each($(".return-item-checkbox:checked"), function () {
@@ -69,9 +82,26 @@ function checkin() {
     )
       .done(function () {
         console.log("done");
+        updateCheckoutHistory(PK);
       })
       .fail(function () {
         console.log("error");
       });
   });
+}
+
+function updateCheckoutHistory(pk) {
+  const URL = `/checkout-history/${pk}`;
+  let $checkoutHistoryTableBody = $("#checkout-history-table tbody");
+  $checkoutHistoryTableBody.html(SPINNER);
+
+  $.get(URL, function (data) {
+    $checkoutHistoryTableBody.html(data);
+  })
+    .done(function () {
+      console.log("done");
+    })
+    .fail(function () {
+      console.log("error");
+    });
 }
