@@ -1,0 +1,6 @@
+{% for entry in holds %}
+  <tr>
+    <td>{{ entry.hold_placed|date:"M d, Y"}}</td>
+    <td>{{ entry.library_card.patron }}</td>
+  </tr>
+{% endfor %}

@@ -4,6 +4,7 @@ from django.urls import path
 from .views import (
     home,
     checkin_item,
+    get_holds,
     CheckoutItemView,
     get_checkout_history,
     get_item_checkouts,
@@ -24,4 +25,5 @@ urlpatterns = [
     path('checkout-history/<int:pk>',
          get_checkout_history, name='checkout-history'),
     path('hold/<int:pk>', PlaceHoldItemView.as_view(), name='hold'),
+    path('holds/<int:pk>', get_holds, name='holds'),
 ]

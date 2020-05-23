@@ -83,6 +83,7 @@ function checkin() {
       .done(function () {
         console.log("done");
         updateCheckoutHistory(PK);
+        updateHolds(PK);
       })
       .fail(function () {
         console.log("error");
@@ -97,6 +98,22 @@ function updateCheckoutHistory(pk) {
 
   $.get(URL, function (data) {
     $checkoutHistoryTableBody.html(data);
+  })
+    .done(function () {
+      console.log("done");
+    })
+    .fail(function () {
+      console.log("error");
+    });
+}
+
+function updateHolds(pk) {
+  const URL = `/holds/${pk}`;
+  let $holdsTableBody = $("#holds-table tbody");
+  $holdsTableBody.html(SPINNER);
+
+  $.get(URL, function (data) {
+    $holdsTableBody.html(data);
   })
     .done(function () {
       console.log("done");

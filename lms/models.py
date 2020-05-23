@@ -57,6 +57,9 @@ class Hold(models.Model):
     def __str__(self):
         return f'Hold {self.pk}'
 
+    class Meta:
+        ordering = ['hold_placed']
+
 
 class Patron(models.Model):
     MALE = 'M'

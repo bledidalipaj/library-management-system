@@ -49,6 +49,23 @@ def get_checkout_history(request, pk):
     return render(request, 'partials/_checkout_history.html', context)
 
 
+def get_holds(request, pk):
+    library_asset = get_object_or_404(Book, pk=pk)
+
+    if request.is_ajax():
+        holds = Hold.objects.filter(
+            library_asset=library_asset)[:5]
+    else:
+        holds = Hold.objects.filter(
+            library_asset=library_asset)
+
+    context = {
+        'holds': holds,
+    }
+
+    return render(request, 'partials/_holds.html', context)
+
+
 def get_item_checkouts(request, pk):
     library_asset = get_object_or_404(Book, pk=pk)
     context = {
