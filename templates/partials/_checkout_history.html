@@ -1,0 +1,15 @@
+{% for entry in checkout_history %}
+  <tr>
+    <td>{{ entry.checked_out|date:"M d, Y"}}</td>
+    <td>
+      
+      {% if entry.checked_in %}
+        {{ entry.checked_in|date:"M d, Y" }}
+      {% else %}
+        -
+      {% endif %}
+        
+    </td>
+    <td>{{ entry.library_card.pk }}</td>
+  </tr>
+{% endfor %}
