@@ -34,7 +34,13 @@ def checkin_item(request):
 
 def get_checkout_history(request, pk):
     library_asset = get_object_or_404(Book, pk=pk)
-    checkout_history = CheckoutHistory.objects.filter(library_asset=library_asset)
+
+    if request.is_ajax():
+        checkout_history = CheckoutHistory.objects.filter(
+            library_asset=library_asset)[:5]
+    else:
+        checkout_history = CheckoutHistory.objects.filter(
+            library_asset=library_asset)
 
     context = {
         'checkout_history': checkout_history,
