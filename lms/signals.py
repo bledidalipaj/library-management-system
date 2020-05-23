@@ -1,6 +1,6 @@
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404, get_object_or_404
 from django.utils import timezone
 
 from .enums import StatusEnum
@@ -39,8 +39,8 @@ def update_library_asset_status_post_delete(sender, instance, **kwargs):
     library_asset = instance.library_asset
     library_card = instance.library_card
 
-    checkout_history_entry = get_object_or_404(
-        CheckoutHistory, library_asset=library_asset, library_card=library_card)
+    checkout_history_entry = get_list_or_404(
+        CheckoutHistory, library_asset=library_asset, library_card=library_card)[0]
     checkout_history_entry.checked_in = timezone.now()
     checkout_history_entry.save()
 
