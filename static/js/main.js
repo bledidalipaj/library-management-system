@@ -1,5 +1,9 @@
 "use strict";
 
+/*------------------------------------
+		Utilities
+  --------------------------------------*/
+
 const SPINNER = `
 <tr>
   <td colspan="3">
@@ -11,6 +15,29 @@ const SPINNER = `
   </td>
 </tr>
 `;
+
+function generateAvailableCopiesBadgeTemplate(numberOfAvailableCopies) {
+  let template;
+  if (numberOfAvailableCopies > 0) {
+    template = `
+    <div class="available-copies-badge bg-success" id="available-copies">
+      <span title="Available copies">
+        ${numberOfAvailableCopies}
+      </span>
+      <span class="sr-only">Available copies</span>
+    </div>
+    `;
+  } else {
+    template = `
+    <div class="available-copies-badge bg-danger" id="available-copies">
+      <span title="Available copies">0</span>
+      <span class="sr-only">Available copies</span>
+    </div>
+    `;
+  }
+
+  return template;
+}
 
 $(window).on("load", function () {
   /*------------------------------------
@@ -81,9 +108,9 @@ function checkin() {
       "json"
     )
       .done(function () {
-        console.log("done");
         updateCheckoutHistory(PK);
         updateHolds(PK);
+        updateAssetMetadata(PK);
       })
       .fail(function () {
         console.log("error");
@@ -114,6 +141,27 @@ function updateHolds(pk) {
 
   $.get(URL, function (data) {
     $holdsTableBody.html(data);
+  })
+    .done(function () {
+      console.log("done");
+    })
+    .fail(function () {
+      console.log("error");
+    });
+}
+
+function updateAssetMetadata(pk) {
+  const URL = `/metadata/${pk}`;
+  let $itemStatus = $("#item-status");
+  let $availableCopies = $("#available-copies");
+
+  $.get(URL, function (data) {
+    // $holdsTableBody.html(data);
+    console.log(data);
+    $itemStatus.text(data.status);
+    $availableCopies.replaceWith(
+      generateAvailableCopiesBadgeTemplate(parseInt(data.available_copies))
+    );
   })
     .done(function () {
       console.log("done");

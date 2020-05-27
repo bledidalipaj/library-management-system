@@ -6,6 +6,7 @@ from .views import (
     checkin_item,
     get_holds,
     CheckoutItemView,
+    get_item_metadata,
     get_checkout_history,
     get_item_checkouts,
     LibraryItemDetailView,
@@ -26,4 +27,5 @@ urlpatterns = [
          get_checkout_history, name='checkout-history'),
     path('hold/<int:pk>', PlaceHoldItemView.as_view(), name='hold'),
     path('holds/<int:pk>', get_holds, name='holds'),
+    path('metadata/<int:pk>', get_item_metadata, name='metadata'),
 ]

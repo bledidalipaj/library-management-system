@@ -4,13 +4,14 @@ import json
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ValidationError
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
 
 
 from .models import Book, Checkout, CheckoutHistory, Hold, Patron
+from .utils import STATUS_DICT
 
 
 def home(request):
@@ -30,6 +31,20 @@ def checkin_item(request):
             'status': 'Ok'
         }
         return JsonResponse(data)
+
+
+def get_item_metadata(request, pk):
+
+    if request.is_ajax():
+        library_asset = get_object_or_404(Book, pk=pk)
+        context = {
+            'status': STATUS_DICT[library_asset.status.name],
+            'available_copies': library_asset.number_of_available_copies_to_borrow,
+        }
+
+        return JsonResponse(context)
+    else:
+        raise Http404()
 
 
 def get_checkout_history(request, pk):

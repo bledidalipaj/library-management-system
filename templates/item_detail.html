@@ -15,17 +15,17 @@
           height="212"
         />
         {% if item.is_available_to_borrow %}
-          <div class="available-copies-badge bg-success">
+          <div class="available-copies-badge bg-success" id="available-copies">
             <span title="Available copies">
               {{ item.number_of_available_copies_to_borrow }}
             </span>
             <span class="sr-only">Available copies</span>
           </div>
         {% else %}
-            <div class="available-copies-badge bg-danger">
-            <span title="Available copies">0</span>
-            <span class="sr-only">Available copies</span>
-          </div>
+            <div class="available-copies-badge bg-danger" id="available-copies">
+              <span title="Available copies">0</span>
+              <span class="sr-only">Available copies</span>
+            </div>
         {% endif %}
         
       </div>
@@ -34,7 +34,7 @@
           <div class="creators text-muted">
             Chino Dalipaj
           </div>
-          <div class="item-status font-weight-bold">
+          <div class="item-status font-weight-bold" id="item-status">
               {{ item.status }}
           </div>
           <div class="item-type">
