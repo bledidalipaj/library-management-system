@@ -7,10 +7,10 @@ from django.core.exceptions import ValidationError
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, View
 
-
-from .models import Book, Checkout, CheckoutHistory, Hold, Patron
+from .forms import PatronForm
+from .models import Book, Checkout, CheckoutHistory, Hold, LibraryCard, Patron
 from .utils import STATUS_DICT
 
 
@@ -182,3 +182,30 @@ class PlaceHoldItemView(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('item-detail', kwargs={'pk': self.kwargs['pk']})
+
+
+def patron_detail(request, pk):
+    if request.method == 'GET':
+        patron = get_object_or_404(Patron, pk=pk)
+        patron_card = get_object_or_404(LibraryCard, patron=patron)
+
+        form = PatronForm(instance=patron)
+
+        context = {'patron': patron, 'form': form}
+        context['checkout_history'] = CheckoutHistory.objects.filter(
+            library_card=patron_card).all()
+        print(context)
+    return render(request, 'patron_detail.html', context)
+
+
+class PatronDetailView(View):
+    def get(self, request, pk):
+        patron = get_object_or_404(Patron, pk=pk)
+        patron_card = get_object_or_404(LibraryCard, patron=patron)
+
+        form = PatronForm(instance=patron)
+        context = {'patron': patron, 'form': form}
+        context['checkout_history'] = CheckoutHistory.objects.filter(
+            library_card=patron_card).all()
+
+        return render(request, 'patron_detail.html', context)

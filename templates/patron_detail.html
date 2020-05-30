@@ -1,0 +1,83 @@
+{% extends "_base.html" %} 
+{% load static %} 
+{% block content %}
+  <div class="container">
+    <h1>{{ patron.first_name }} {{ patron.last_name }}</h1>
+    <p class="text-muted">
+      {{ patron.home_library_branch }}
+    </p>
+    
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav nav-tabs mb-4">
+          <li class="nav-item">
+            <a class="nav-link active" href="#info" id="info-tab" data-toggle="tab" aria-controls="info" aria-selected="true">Info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#checkouts" id="checkouts-tab" data-toggle="tab" aria-controls="checkouts" aria-selected="false">Check outs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#checkout-history" id="checkout-history-tab" data-toggle="tab" aria-controls="checkout-history-tab" aria-selected="false">Checkout History</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="patron-tab-content">
+          <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+            <form action="" method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+            </form>
+          </div>
+
+          <div class="tab-pane fade show" id="checkouts" role="tabpanel" aria-labelledby="checkouts-tab">
+            Checkouts Tab
+          </div>
+
+          <div class="tab-pane fade show" id="checkout-history" role="tabpanel" aria-labelledby="checkout-history-tab">
+            <div class="table-responsive">
+              <table class="table table-hover table-sm align-middle" id="checkout-history-table">
+                  <!-- Screen Readers -->
+                  <caption class="sr-only">
+                    Displays the checkout history of the patron
+                  </caption>
+                  <thead>
+                      <tr class="align-middle">
+                        <th scope="col" class="align-middle">No.</th>
+                        <th scope="col" class="align-middle">Item</th>
+                        <th scope="col" class="align-middle">Item Type</th>
+                        <th scope="col" class="align-middle">
+                          Date Loaned
+                        </th>
+                        <th scope="col" class="align-middle">Date Returned</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for entry in checkout_history %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ entry.library_asset.title }}</td>
+                        <td>Book</td>
+                        <td>{{ entry.checked_out|date:"d M, Y" }}</td>
+
+                        <td>
+                          {% if entry.checked_in %}
+                            {{ entry.checked_in|date:"d M, Y" }}
+                          {% else %}
+                            -
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+          </div>
+        </div>
+      </div>
+      <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+    
+  </div>
+{% endblock content %}

@@ -26,7 +26,7 @@
             <tr>
               <th scope="row">{{ forloop.counter }}</th>
               <td>
-                <a href="#">
+                <a href="{% url 'patron' pk=patron.pk %}">
                   <i class="fas fa-user"></i>
                 </a>
               </td>
