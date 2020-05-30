@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'lms.apps.LmsConfig',
+
+    # third party
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +132,5 @@ MEDIA_URL = '/media/'
 
 # path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
