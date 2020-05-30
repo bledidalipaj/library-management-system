@@ -23,11 +23,115 @@
 
         <div class="tab-content" id="patron-tab-content">
           <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-            <form action="" method="post">
-              {% csrf_token %}
-              {{ form.as_p }}
-            </form>
-          </div>
+            <div class="patron-info-container">
+              <div class="patron-info">
+                <div class="info-label">
+                  <span class="text-muted">E-mail</span>
+                </div>
+
+                <div class="info-value">
+                  <span class="icon mr-2"><i class="fas fa-envelope"></i></span>
+                  <span>-</span>
+                </div>
+              </div> <!-- /.patron-info -->
+
+              <div class="patron-info">
+                <div class="info-label">
+                  <span class="text-muted">Telephone</span>
+                </div>
+
+                <div class="info-value">
+                  <span class="icon mr-2"><i class="fas fa-phone-alt"></i></span>
+                  <span>{{ patron.telephone }}</span>
+                </div>
+              </div> <!-- /.patron-info -->
+
+              <div class="patron-info">
+                <div class="info-label">
+                  <span class="text-muted">Address</span>
+                </div>
+
+                <div class="info-value">
+                  <span class="icon mr-2">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </span>
+                  <span>{{ patron.address }}</span>
+                </div>
+              </div> <!-- /.patron-info -->
+
+
+              <div class="patron-info">
+                <div class="info-label">
+                  <span class="text-muted">Date of birth</span>
+                </div>
+
+                <div class="info-value">
+                  <span class="icon mr-2">
+                    <i class="fas fa-calendar-alt"></i>
+                  </span>
+                  <span>{{ patron.date_of_birth }}</span>
+                </div>
+              </div> <!-- /.patron-info -->
+
+              <div class="patron-info">
+                <div class="info-label">
+                  <span class="text-muted">Gender</span>
+                </div>
+
+                <div class="info-value">
+                  <span class="icon mr-2"><i class="fas fa-venus-mars"></i></span>
+                  <span>
+                    
+                    {% if patron.gender == 'M' %}
+                      Male
+                    {% else %}
+                      Female
+                    {% endif %}
+                      
+                  </span>
+                </div>
+              </div> <!-- /.patron-info -->
+
+              <div class="patron-info">
+                <div class="info-label">
+                  <span class="text-muted">Fees</span>
+                </div>
+
+                <div class="info-value">
+                  <span class="icon mr-2"><i class="fas fa-money-bill"></i></span>
+                  <span>${{ patron.library_card.fees }}</span>
+                </div>
+              </div> <!-- /.patron-info -->
+
+              <div class="patron-info">
+                <div class="info-label">
+                  <span class="text-muted">Library Card Id</span>
+                </div>
+
+                <div class="info-value">
+                  <span class="icon mr-2">
+                    <i class="fas fa-id-card"></i>
+                  </span>
+                  
+                  <span>{{ patron.library_card.pk }}</span>
+                </div>
+              </div> <!-- /.patron-info -->
+
+              <div class="patron-info">
+                <div class="info-label">
+                  <span class="text-muted">Member Since</span>
+                </div>
+
+                <div class="info-value">
+                  <span class="icon mr-2">
+                    <i class="fas fa-calendar-check"></i>
+                  </span>
+                  
+                  <span>{{ patron.library_card.created|date:"d M, Y" }}</span>
+                </div>
+              </div> <!-- /.patron-info -->
+            </div> <!-- /.patron-info-container -->
+          </div> <!-- /.tab-pane -->
 
           <div class="tab-pane fade show" id="checkouts" role="tabpanel" aria-labelledby="checkouts-tab">
             Checkouts Tab

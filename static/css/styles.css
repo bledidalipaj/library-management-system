@@ -46,3 +46,20 @@ table a:hover {
   justify-content: center;
   align-items: center;
 }
+
+/*------------------------------------
+		Patron Detail Page
+  --------------------------------------*/
+
+.patron-info-container {
+  max-width: 400px;
+}
+
+.patron-info {
+  display: flex;
+}
+
+.patron-info .info-label,
+.patron-info .info-value {
+  flex: 1 1 0px;
+}

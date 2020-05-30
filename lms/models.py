@@ -89,7 +89,8 @@ class LibraryCard(models.Model):
 
     fees = models.FloatField(default=0.00)
     created = models.DateTimeField(auto_now_add=True)
-    patron = models.OneToOneField(Patron, on_delete=models.CASCADE, null=True)
+    patron = models.OneToOneField(
+        Patron, related_name="library_card", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'Library card {self.id}'
