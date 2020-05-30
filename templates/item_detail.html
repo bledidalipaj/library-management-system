@@ -114,11 +114,11 @@
               <tbody>
                 {% for entry in checkout_history %}
                   <tr>
-                    <td>{{ entry.checked_out|date:"M d, Y"}}</td>
+                    <td>{{ entry.checked_out|date:"d M, Y"}}</td>
                     <td>
                       
                       {% if entry.checked_in %}
-                        {{ entry.checked_in|date:"M d, Y" }}
+                        {{ entry.checked_in|date:"d M, Y" }}
                       {% else %}
                         -
                       {% endif %}
