@@ -7,7 +7,13 @@ from django.core.exceptions import ValidationError
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, View
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    UpdateView,
+    View
+)
 
 from .forms import PatronForm
 from .models import Book, Checkout, CheckoutHistory, Hold, LibraryCard, Patron
@@ -209,3 +215,13 @@ class PatronDetailView(View):
             library_card=patron_card).all()
 
         return render(request, 'patron_detail.html', context)
+
+
+class PatronUpdateView(SuccessMessageMixin, UpdateView):
+    model = Patron
+    fields = '__all__'
+    template_name = 'update_patron.html'
+    success_message = 'Patron infromation updated successfuly.'
+
+    def get_success_url(self):
+        return reverse_lazy('patron', kwargs={'pk': self.kwargs['pk']})

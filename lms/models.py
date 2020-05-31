@@ -71,6 +71,7 @@ class Patron(models.Model):
     ]
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    email = models.EmailField(blank=True, null=True, unique=True)
     address = models.CharField(max_length=150)
     date_of_birth = models.DateField()
     telephone = models.CharField(max_length=30)
