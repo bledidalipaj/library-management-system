@@ -136,10 +136,57 @@
             </div> <!-- /.patron-info-container -->
           </div> <!-- /.tab-pane -->
 
+          <!-- Checkouts Tab Content -->
           <div class="tab-pane fade show" id="checkouts" role="tabpanel" aria-labelledby="checkouts-tab">
-            Checkouts Tab
+            
+            {% if checkouts %}
+              <form action="" method="POST">
+                {% csrf_token %}
+                <div class="table-responsive">
+                  <table class="table table-hover table-sm align-middle" id="checkout-history-table">
+                      <!-- Screen Readers -->
+                      <caption class="sr-only">
+                        Displays active checkouts for patron
+                      </caption>
+                      <thead>
+                          <tr class="align-middle">
+                            <th scope="col" class="align-middle">No.</th>
+                            <th scope="col" class="align-middle">Item</th>
+                            <th scope="col" class="align-middle">Item Type</th>
+                            <th scope="col" class="align-middle">
+                              Date Loaned
+                            </th>
+                            <th scope="col" class="align-middle">Return</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {% for entry in checkouts %}
+                          <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ entry.library_asset.title }}</td>
+                            <td>Book</td>
+                            <td>{{ entry.since|date:"d M, Y" }}</td>
+
+                            <td>
+                              <input type="checkbox" value="{{ entry.pk }}" name="item-id">
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+                <input type="submit" class="btn btn-info" value="Save">
+              </form>
+            {% else %}
+                  <p class="text-muted">
+                    This patron hasn't any borrowed items. Click <a href="{% url 'catalog' %}">here</a> to check the library catalog.
+                  </p>
+            {% endif %}
+              
           </div>
 
+          <!-- Checkout History Tab Content -->
           <div class="tab-pane fade show" id="checkout-history" role="tabpanel" aria-labelledby="checkout-history-tab">
             <div class="table-responsive">
               <table class="table table-hover table-sm align-middle" id="checkout-history-table">

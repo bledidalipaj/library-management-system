@@ -4,7 +4,7 @@ import json
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ValidationError
-from django.http import Http404, JsonResponse
+from django.http import HttpResponseRedirect, Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -190,21 +190,8 @@ class PlaceHoldItemView(SuccessMessageMixin, CreateView):
         return reverse_lazy('item-detail', kwargs={'pk': self.kwargs['pk']})
 
 
-def patron_detail(request, pk):
-    if request.method == 'GET':
-        patron = get_object_or_404(Patron, pk=pk)
-        patron_card = get_object_or_404(LibraryCard, patron=patron)
+class PatronDetailView(SuccessMessageMixin, View):
 
-        form = PatronForm(instance=patron)
-
-        context = {'patron': patron, 'form': form}
-        context['checkout_history'] = CheckoutHistory.objects.filter(
-            library_card=patron_card).all()
-        print(context)
-    return render(request, 'patron_detail.html', context)
-
-
-class PatronDetailView(View):
     def get(self, request, pk):
         patron = get_object_or_404(Patron, pk=pk)
         patron_card = get_object_or_404(LibraryCard, patron=patron)
@@ -213,8 +200,24 @@ class PatronDetailView(View):
         context = {'patron': patron, 'form': form}
         context['checkout_history'] = CheckoutHistory.objects.filter(
             library_card=patron_card).all()
+        context['checkouts'] = Checkout.objects.filter(
+            library_card=patron_card)
 
         return render(request, 'patron_detail.html', context)
+
+    def post(self, request, pk):
+        checkout_ids = request.POST.getlist('item-id')
+        items_count = len(checkout_ids)
+        success_message = f'Successfully returned {items_count}' + [
+            ' items.', ' item.'][items_count == 1]
+
+        for checkout_id in checkout_ids:
+            checkout_obj = get_object_or_404(Checkout, pk=checkout_id)
+            checkout_obj.delete()
+
+        messages.success(request, success_message)
+
+        return HttpResponseRedirect(self.request.path_info)
 
 
 class PatronUpdateView(SuccessMessageMixin, UpdateView):
