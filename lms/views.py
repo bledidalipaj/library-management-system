@@ -196,16 +196,19 @@ class PatronDetailView(SuccessMessageMixin, View):
         patron = get_object_or_404(Patron, pk=pk)
         patron_card = get_object_or_404(LibraryCard, patron=patron)
 
-        form = PatronForm(instance=patron)
-        context = {'patron': patron, 'form': form}
-        context['checkout_history'] = CheckoutHistory.objects.filter(
-            library_card=patron_card).all()
-        context['checkouts'] = Checkout.objects.filter(
-            library_card=patron_card)
+        context = {
+            'patron': patron,
+            'checkout_history': CheckoutHistory.objects.filter(library_card=patron_card),
+            'checkouts': Checkout.objects.filter(library_card=patron_card)
+        }
 
         return render(request, 'patron_detail.html', context)
 
     def post(self, request, pk):
+        '''
+        Check in selected items by removing the checkouts from the database.
+        After the successful deletion we redirect to the same view.
+        '''
         checkout_ids = request.POST.getlist('item-id')
         items_count = len(checkout_ids)
         success_message = f'Successfully returned {items_count}' + [
