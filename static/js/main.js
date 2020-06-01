@@ -53,7 +53,8 @@ $(window).on("load", function () {
 		Automatically close alerts after 5s.
 	--------------------------------------*/
   setTimeout(function () {
-    $(".alert").alert("close");
+    // $(".alert").alert("close");
+    $("#messages-container").remove();
   }, 5000);
 
   /*------------------------------------
