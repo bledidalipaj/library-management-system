@@ -196,10 +196,14 @@ class PatronDetailView(SuccessMessageMixin, View):
         patron = get_object_or_404(Patron, pk=pk)
         patron_card = get_object_or_404(LibraryCard, patron=patron)
 
+        active_tab = request.GET.get('active_tab') or 'info-tab'
+        print(active_tab)
+
         context = {
             'patron': patron,
             'checkout_history': CheckoutHistory.objects.filter(library_card=patron_card),
-            'checkouts': Checkout.objects.filter(library_card=patron_card)
+            'checkouts': Checkout.objects.filter(library_card=patron_card),
+            'active_tab': active_tab
         }
 
         return render(request, 'patron_detail.html', context)
@@ -220,7 +224,7 @@ class PatronDetailView(SuccessMessageMixin, View):
 
         messages.success(request, success_message)
 
-        return HttpResponseRedirect(self.request.path_info)
+        return HttpResponseRedirect(self.request.path_info + '?active_tab=checkouts-tab')
 
 
 class PatronUpdateView(SuccessMessageMixin, UpdateView):
