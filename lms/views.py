@@ -197,7 +197,6 @@ class PatronDetailView(SuccessMessageMixin, View):
         patron_card = get_object_or_404(LibraryCard, patron=patron)
 
         active_tab = request.GET.get('active_tab') or 'info-tab'
-        print(active_tab)
 
         context = {
             'patron': patron,
