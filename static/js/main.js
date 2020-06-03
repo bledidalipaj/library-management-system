@@ -78,6 +78,14 @@ $(window).on("load", function () {
       });
     //
   });
+
+  /*------------------------------------
+		Making table rows clickable
+  --------------------------------------*/
+  $(".clickable-row").on("click", function (e) {
+    let url = $(this).data("url");
+    window.location = url;
+  });
 });
 
 function checkin() {

@@ -29,6 +29,10 @@ table a:hover {
   color: #343a40;
 }
 
+.clickable-row {
+  cursor: pointer;
+}
+
 /* 
  Detail Page
 */
