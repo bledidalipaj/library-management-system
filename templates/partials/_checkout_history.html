@@ -1,5 +1,12 @@
 {% for entry in checkout_history %}
-  <tr>
+  <tr 
+    class="clickable-row" onclick="redirectToDataUrl(event)"
+    {% if entry.checked_in %}
+      data-url="{% url 'patron' pk=entry.library_card.patron.pk %}?active_tab=checkout-history-tab"
+    {% else %}
+      data-url="{% url 'patron' pk=entry.library_card.patron.pk %}?active_tab=checkouts-tab"
+    {% endif %}
+    >
     <td>{{ entry.checked_out|date:"M d, Y"}}</td>
     <td>
       

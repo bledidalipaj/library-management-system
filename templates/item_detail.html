@@ -114,7 +114,7 @@
               <tbody>
                 {% for entry in checkout_history %}
                   <tr 
-                    class="clickable-row" 
+                    class="clickable-row" onclick="redirectToDataUrl(event)"
                     {% if entry.checked_in %}
                       data-url="{% url 'patron' pk=entry.library_card.patron.pk %}?active_tab=checkout-history-tab"
                     {% else %}

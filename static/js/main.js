@@ -78,14 +78,6 @@ $(window).on("load", function () {
       });
     //
   });
-
-  /*------------------------------------
-		Making table rows clickable
-  --------------------------------------*/
-  $(".clickable-row").on("click", function (e) {
-    let url = $(this).data("url");
-    window.location = url;
-  });
 });
 
 function checkin() {
@@ -178,4 +170,13 @@ function updateAssetMetadata(pk) {
     .fail(function () {
       console.log("error");
     });
+}
+
+/*------------------------------------
+		Making table rows clickable
+  --------------------------------------*/
+
+function redirectToDataUrl(event) {
+  let url = event.target.parentElement.dataset.url;
+  window.location = url;
 }
