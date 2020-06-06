@@ -5,6 +5,7 @@ from django.utils import timezone
 
 from .enums import StatusEnum
 from .models import Checkout, CheckoutHistory, Hold, LibraryCard, Patron, Status
+from .utils import notify_patron_about_hold
 
 
 @receiver(post_save, sender=Patron)
@@ -55,6 +56,9 @@ def update_library_asset_status_post_delete(sender, instance, **kwargs):
                     library_card=hold.library_card
                 )
                 hold.delete()
+                # TODO: make this a celery task
+                if hold.library_card.patron.email:
+                    notify_patron_about_hold(hold)
                 break
 
     if library_asset.is_available_to_borrow:
