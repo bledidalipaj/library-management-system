@@ -88,3 +88,9 @@ table a:hover {
 .bg-dark {
   background-color: #24292e !important;
 }
+
+.form-sm-container {
+  width: 350px;
+  margin: 0 auto;
+  margin-top: -2.5rem !important;
+}
