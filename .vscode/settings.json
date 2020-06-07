@@ -2,8 +2,8 @@
   "files.associations": {
     "**/templates/*.html": "django-html",
     "**/templates/*": "django-txt",
-    "**/templates/partials/*.html": "django-html",
-    "**/templates/partials/*": "django-txt"
+    "**/templates/*/*": "django-txt",
+    "**/templates/*/*.html": "django-html"
   },
   "editor.formatOnSave": true,
   "python.linting.pylintEnabled": false,
