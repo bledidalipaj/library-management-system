@@ -61,9 +61,11 @@
           <li class="nav-item {% if page == 'catalog' %}active{% endif %}">
             <a class="nav-link" href="{% url 'catalog' %}">Catalog</a>
           </li>
+          {% if request.user.is_authenticated %}
           <li class="nav-item {% if page == 'patrons' %}active{% endif %}">
             <a class="nav-link" href="{% url 'patrons' %}">Patrons</a>
           </li>
+          {% endif %}
           <li class="nav-item {% if page == 'branches' %}active{% endif %}">
             <a class="nav-link" href="#">Branches</a>
           </li>

@@ -4,52 +4,86 @@
   <div class="container">
     <h1 class="mb-3">Welcome to Lakeview ILS</h1>
     <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <img
-            class="card-img-top"
-            src="{% static 'images/blur-book-stack-books-bookshelves.jpg' %}"
-            alt="Bookshelves"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Library Catalog</h5>
-            <p class="card-text text-muted">View and manage library assets</p>
-            <a href="{% url 'catalog' %}">VIEW CATALOG</a>
+      
+      {% if request.user.is_authenticated %}
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="{% static 'images/blur-book-stack-books-bookshelves.jpg' %}"
+              alt="Bookshelves"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Library Catalog</h5>
+              <p class="card-text text-muted">View and manage library assets</p>
+              <a href="{% url 'catalog' %}">VIEW CATALOG</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-4">
-        <div class="card">
-          <img
-            class="card-img-top"
-            src="{% static 'images/woman-sitting-on-floor-reading-book.jpg' %}"
-            alt="Woman sitting on floor reading a book"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Patrons</h5>
-            <p class="card-text text-muted">
-              View and manage library patron data
-            </p>
-            <a href="{% url 'patrons' %}">VIEW PATRON INDEX</a>
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="{% static 'images/woman-sitting-on-floor-reading-book.jpg' %}"
+              alt="Woman sitting on floor reading a book"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Patrons</h5>
+              <p class="card-text text-muted">
+                View and manage library patron data
+              </p>
+              <a href="{% url 'patrons' %}">VIEW PATRON INDEX</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-4">
-        <div class="card">
-          <img
-            class="card-img-top"
-            src="{% static 'images/ancient-antique-architectural-design-architecture.jpg' %}"
-            alt="Library"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Branches</h5>
-            <p class="card-text text-muted">View and manage Lakeview branches</p>
-            <a href="#">VIEW BRANCH INDEX</a>
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="{% static 'images/ancient-antique-architectural-design-architecture.jpg' %}"
+              alt="Library"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Branches</h5>
+              <p class="card-text text-muted">View and manage Lakeview branches</p>
+              <a href="#">VIEW BRANCH INDEX</a>
+            </div>
           </div>
         </div>
-      </div>
+      {% else %}
+        <div class="col-md-6">
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="{% static 'images/blur-book-stack-books-bookshelves.jpg' %}"
+              alt="Bookshelves"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Library Catalog</h5>
+              <p class="card-text text-muted">View and manage library assets</p>
+              <a href="{% url 'catalog' %}">VIEW CATALOG</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="{% static 'images/ancient-antique-architectural-design-architecture.jpg' %}"
+              alt="Library"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Branches</h5>
+              <p class="card-text text-muted">View and manage Lakeview branches</p>
+              <a href="#">VIEW BRANCH INDEX</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+        
     </div>
   </div>
 {% endblock content %}

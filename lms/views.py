@@ -2,6 +2,8 @@ import json
 
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect, Http404, JsonResponse
@@ -25,6 +27,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+@login_required
 def checkin_item(request):
     if request.is_ajax():
         checkout_ids = map(int, request.GET.get('checkout_ids').split(','))
@@ -39,6 +42,7 @@ def checkin_item(request):
         return JsonResponse(data)
 
 
+@login_required
 def get_item_metadata(request, pk):
 
     if request.is_ajax():
@@ -53,6 +57,7 @@ def get_item_metadata(request, pk):
         raise Http404()
 
 
+@login_required
 def get_checkout_history(request, pk):
     library_asset = get_object_or_404(Book, pk=pk)
 
@@ -70,6 +75,7 @@ def get_checkout_history(request, pk):
     return render(request, 'partials/_checkout_history.html', context)
 
 
+@login_required
 def get_holds(request, pk):
     library_asset = get_object_or_404(Book, pk=pk)
 
@@ -87,6 +93,7 @@ def get_holds(request, pk):
     return render(request, 'partials/_holds.html', context)
 
 
+@login_required
 def get_item_checkouts(request, pk):
     library_asset = get_object_or_404(Book, pk=pk)
     context = {
@@ -97,7 +104,7 @@ def get_item_checkouts(request, pk):
     return render(request, 'partials/_modal_content.html', context)
 
 
-class CheckoutItemView(SuccessMessageMixin, CreateView):
+class CheckoutItemView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Checkout
     fields = ['library_card']
     template_name = 'checkout.html'
@@ -141,7 +148,7 @@ class LibraryItemDetailView(DetailView):
         return context
 
 
-class ListPatronsView(ListView):
+class ListPatronsView(LoginRequiredMixin, ListView):
     context_object_name = 'patrons'
     model = Patron
     template_name = 'patrons.html'
@@ -169,7 +176,7 @@ class ListCatalogView(ListView):
         return context
 
 
-class PlaceHoldItemView(SuccessMessageMixin, CreateView):
+class PlaceHoldItemView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Hold
     fields = ['library_card']
     template_name = 'place_hold.html'
@@ -190,7 +197,7 @@ class PlaceHoldItemView(SuccessMessageMixin, CreateView):
         return reverse_lazy('item-detail', kwargs={'pk': self.kwargs['pk']})
 
 
-class PatronDetailView(SuccessMessageMixin, View):
+class PatronDetailView(LoginRequiredMixin, SuccessMessageMixin, View):
 
     def get(self, request, pk):
         patron = get_object_or_404(Patron, pk=pk)
@@ -226,7 +233,7 @@ class PatronDetailView(SuccessMessageMixin, View):
         return HttpResponseRedirect(self.request.path_info + '?active_tab=checkouts-tab')
 
 
-class PatronUpdateView(SuccessMessageMixin, UpdateView):
+class PatronUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Patron
     fields = '__all__'
     template_name = 'update_patron.html'

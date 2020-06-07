@@ -64,17 +64,19 @@
               
               <a href="#" class="btn btn-danger">Mark Item Lost</a>
           </div> {% endcomment %}
-          <div class="actions dropdown mt-auto">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Actions
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item checkin" href="#" data-url="{% url 'item-checkouts' pk=item.pk %}">Check In</a>
-              <a class="dropdown-item" href="{% url 'checkout' pk=item.pk %}">Check Out</a>
-              <a class="dropdown-item" href="{% url 'hold' pk=item.pk %}">Place Hold</a>
-              <a class="dropdown-item" href="#">Mark Lost</a>
+          {% if request.user.is_authenticated %}
+            <div class="actions dropdown mt-auto">
+              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Actions
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item checkin" href="#" data-url="{% url 'item-checkouts' pk=item.pk %}">Check In</a>
+                <a class="dropdown-item" href="{% url 'checkout' pk=item.pk %}">Check Out</a>
+                <a class="dropdown-item" href="{% url 'hold' pk=item.pk %}">Place Hold</a>
+                <a class="dropdown-item" href="#">Mark Lost</a>
+              </div>
             </div>
-          </div>
+          {% endif %}
       </div>
 
       <div class="col-4">
