@@ -21,7 +21,7 @@ h1 {
 /* Table styles */
 
 .thead-dark th {
-  background-color: #343a40 !important;
+  /* background-color: #24292e !important; */
 }
 
 table a,
@@ -79,4 +79,12 @@ table a:hover {
 
 .edit-patron-btn:hover {
   color: #212529;
+}
+
+/*------------------------------------
+		Overriding Bootstrap Styles
+  --------------------------------------*/
+
+.bg-dark {
+  background-color: #24292e !important;
 }
