@@ -43,10 +43,8 @@ $(window).on("load", function () {
   /*------------------------------------
 		Preloder
 	--------------------------------------*/
-  setTimeout(function () {
-    $(".loader").fadeOut();
-    $("#preloader").delay(400).fadeOut("slow");
-  }, 1000);
+  $(".loader").fadeOut();
+  $("#preloader").delay(400).fadeOut("slow");
 
   /*------------------------------------
 		Alerts
