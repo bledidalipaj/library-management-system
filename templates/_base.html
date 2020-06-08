@@ -74,7 +74,7 @@
               <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
             </li>
           {% else %}
-            <li class="nav-item {% if page == 'sign-in' %}active{% endif %}">
+            <li class="nav-item {% if page == 'login' %}active{% endif %}">
               <a class="nav-link" href="{% url 'login' %}">Sign in</a>
             </li>
           {% endif %}

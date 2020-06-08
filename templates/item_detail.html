@@ -116,11 +116,14 @@
               <tbody>
                 {% for entry in checkout_history %}
                   <tr 
-                    class="clickable-row" onclick="redirectToDataUrl(event)"
-                    {% if entry.checked_in %}
-                      data-url="{% url 'patron' pk=entry.library_card.patron.pk %}?active_tab=checkout-history-tab"
-                    {% else %}
-                      data-url="{% url 'patron' pk=entry.library_card.patron.pk %}?active_tab=checkouts-tab"
+                    {% if request.user.is_authenticated %}
+                      class="clickable-row"
+                      onclick="redirectToDataUrl(event)" 
+                      {% if entry.checked_in %}
+                        data-url="{% url 'patron' pk=entry.library_card.patron.pk %}?active_tab=checkout-history-tab"
+                      {% else %}
+                        data-url="{% url 'patron' pk=entry.library_card.patron.pk %}?active_tab=checkouts-tab"
+                      {% endif %}
                     {% endif %}
                     >
                     <td>{{ entry.checked_out|date:"d M, Y"}}</td>
