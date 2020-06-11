@@ -14,6 +14,7 @@ from .views import (
     ListPatronsView,
     PlaceHoldItemView,
     # patron_detail
+    PatronCreateView,
     PatronDetailView,
     PatronUpdateView,
 )
@@ -23,6 +24,7 @@ urlpatterns = [
     path('patrons/', ListPatronsView.as_view(), name='patrons'),
     path('patron/<int:pk>', PatronDetailView.as_view(), name='patron'),
     path('patron/<int:pk>/update', PatronUpdateView.as_view(), name='patron-update'),
+    path('patron/create/', PatronCreateView.as_view(), name='patron-create'),
     path('catalog/', ListCatalogView.as_view(), name='catalog'),
     path('catalog/<int:pk>', LibraryItemDetailView.as_view(), name='item-detail'),
     path('checkin/<int:pk>', get_item_checkouts, name='item-checkouts'),

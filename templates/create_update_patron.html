@@ -43,7 +43,7 @@
 
       {{ form.home_library_branch|as_crispy_field }}
         
-      <input type="submit" class="btn btn-info" value="Update">
+      <input type="submit" class="btn btn-info" {% if object %}value="Update"{% else %}value="Create"{% endif %}>
     </form>
   </div>
 {% endblock content %}

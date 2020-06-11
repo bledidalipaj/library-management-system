@@ -236,8 +236,18 @@ class PatronDetailView(LoginRequiredMixin, SuccessMessageMixin, View):
 class PatronUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Patron
     fields = '__all__'
-    template_name = 'update_patron.html'
+    template_name = 'create_update_patron.html'
     success_message = 'Patron infromation updated successfuly.'
 
     def get_success_url(self):
         return reverse_lazy('patron', kwargs={'pk': self.kwargs['pk']})
+
+
+class PatronCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Patron
+    fields = '__all__'
+    template_name = 'create_update_patron.html'
+    success_message = 'Patron successfuly created.'
+
+    def get_success_url(self):
+        return reverse_lazy('patrons')
