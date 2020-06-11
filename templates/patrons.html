@@ -5,7 +5,7 @@
     <h1 class="mb-3">Patrons Index</h1>
 
     <div class="table-responsive">
-      <table class="table table-hover table-sm">
+      <table class="table table-hover table-sm" id="patrons-datatable">
         <!-- Screen Readers -->
         <caption class="sr-only">
           List of library patrons
@@ -23,7 +23,7 @@
         </thead>
         <tbody>
           {% for patron in patrons %}
-            <tr>
+            <tr class="text-center">
               <th scope="row">{{ forloop.counter }}</th>
               <td>
                 <a href="{% url 'patron' pk=patron.pk %}">
@@ -36,11 +36,20 @@
               <td>$ {{ patron.library_card.fees }}</td>
               <td>{{ patron.home_library_branch }}</td>
             </tr>
+          {% empty %}
+            <p class="text-muted">
+              No patrons yet!!!.
+            </p>
           {% endfor %}
         </tbody>
       </table>
     </div>
 
-    {% include "partials/_pagination.html" %}
+    {% comment %} {% include "partials/_pagination.html" %} {% endcomment %}
   </div>
 {% endblock content %}
+
+
+{% block scripts %}
+  $("#patrons-datatable").DataTable();
+{% endblock scripts %}
