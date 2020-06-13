@@ -12,6 +12,9 @@ django = "*"
 pillow = "*"
 django-crispy-forms = "*"
 django-environ = "*"
+gunicorn = "*"
+django-heroku = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
