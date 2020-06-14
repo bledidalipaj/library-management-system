@@ -109,7 +109,7 @@ a:hover,
   --------------------------------------*/
 
 .form-sm-container {
-  width: 350px;
+  max-width: 350px;
   margin: 0 auto;
   margin-top: -2.5rem !important;
 }

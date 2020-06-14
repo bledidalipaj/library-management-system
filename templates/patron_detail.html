@@ -34,7 +34,13 @@
 
                 <div class="info-value">
                   <span class="icon mr-2"><i class="fas fa-envelope"></i></span>
-                  <span>-</span>
+                  <span>
+                   {% if patron.email %}
+                    {{ patron.email }}
+                   {% else %}
+                    -
+                   {% endif %}
+                  </span>
                 </div>
               </div> <!-- /.patron-info -->
 
@@ -188,44 +194,50 @@
 
           <!-- Checkout History Tab Content -->
           <div class="tab-pane fade show {% if active_tab == 'checkout-history-tab' %}active{% endif %}" id="checkout-history" role="tabpanel" aria-labelledby="checkout-history-tab">
-            <div class="table-responsive">
-              <table class="table table-hover table-sm align-middle" id="checkout-history-table">
-                  <!-- Screen Readers -->
-                  <caption class="sr-only">
-                    Displays the checkout history of the patron
-                  </caption>
-                  <thead>
-                      <tr class="align-middle">
-                        <th scope="col" class="align-middle">No.</th>
-                        <th scope="col" class="align-middle">Item</th>
-                        <th scope="col" class="align-middle">Item Type</th>
-                        <th scope="col" class="align-middle">
-                          Date Loaned
-                        </th>
-                        <th scope="col" class="align-middle">Date Returned</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    {% for entry in checkout_history %}
-                      <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ entry.library_asset.title }}</td>
-                        <td>Book</td>
-                        <td>{{ entry.checked_out|date:"d M, Y" }}</td>
+            {% if checkout_history %}
+              <div class="table-responsive">
+                <table class="table table-hover table-sm align-middle" id="checkout-history-table">
+                    <!-- Screen Readers -->
+                    <caption class="sr-only">
+                      Displays the checkout history of the patron
+                    </caption>
+                    <thead>
+                        <tr class="align-middle">
+                          <th scope="col" class="align-middle">No.</th>
+                          <th scope="col" class="align-middle">Item</th>
+                          <th scope="col" class="align-middle">Item Type</th>
+                          <th scope="col" class="align-middle">
+                            Date Loaned
+                          </th>
+                          <th scope="col" class="align-middle">Date Returned</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {% for entry in checkout_history %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{ entry.library_asset.title }}</td>
+                          <td>Book</td>
+                          <td>{{ entry.checked_out|date:"d M, Y" }}</td>
 
-                        <td>
-                          {% if entry.checked_in %}
-                            {{ entry.checked_in|date:"d M, Y" }}
-                          {% else %}
-                            -
-                          {% endif %}
-                        </td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-              </table>
-            </div>
+                          <td>
+                            {% if entry.checked_in %}
+                              {{ entry.checked_in|date:"d M, Y" }}
+                            {% else %}
+                              -
+                            {% endif %}
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+              </div>
             <!-- /.table-responsive -->
+            {% else %}
+              <p class="text-muted">
+                This patron hasn't any borrowed items yet.
+              </p>
+            {% endif %}
           </div>
         </div>
       </div>
