@@ -47,6 +47,21 @@ $(window).on("load", function () {
   $("#preloader").delay(400).fadeOut("slow");
 
   /*------------------------------------
+    Adjust margin top of the footer.
+
+    Essentially it adds some white space
+    between the footer and the container
+    when vertical scrollbar is visible.
+	--------------------------------------*/
+
+  let $footer = $(".footer");
+
+  if ($(document).height() > $(window).height()) {
+    $footer.removeClass("mt-auto");
+    $footer.addClass("mt-5");
+  }
+
+  /*------------------------------------
 		Alerts
 		Automatically close alerts after 5s.
 	--------------------------------------*/
