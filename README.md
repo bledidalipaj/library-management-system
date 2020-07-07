@@ -20,16 +20,15 @@ $ python --version
 
 You will also need [Pipenv](https://github.com/pypa/pipenv) in order to install the necessary packages.
 
-
 ##### Installation
 
 ```bash
 $ git clone https://github.com/bledidalipaj/library-management-system.git
 $ cd library-management-system
-$ pipenv install 
+$ pipenv install
 ```
 
-The applicatation needs to read enviroment variables to run properly. To set those variables locally, 
+The applicatation needs to read enviroment variables to run properly. To set those variables locally,
 copy the .env.sample file as .env
 
 ```bash
@@ -59,7 +58,7 @@ You can stop the webserver by pressing Control + C
 ##### Set up email
 
 In order for the application to work you will need to configure an email, which the application will use
-to send the neccessary notifications.
+to send the necessary notifications.
 
 You can do that by setting the following environment variables in the .env file:
 
@@ -79,7 +78,7 @@ EMAIL_PORT=587
 EMAIL_HOST_USER=youremail
 EMAIL_HOST_PASSWORD=yourpassword
 
-If you do not want to configure the email, then you must set the following variable in the .env file and 
+If you do not want to configure the email, then you must set the following variable in the .env file and
 ignore the other ones:
 
 EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
